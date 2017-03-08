@@ -1,0 +1,104 @@
+Gursimar Singh
+Professor Swami Iyer 
+CS 210
+MWF2pm
+1. Hours to complete the project: ~ 25 hours
+
+2. Provide a short description of how you approached each problem, issues you 
+   encountered, and how you resolved those issues.
+
+   Problem 1 (Model a Percolation System):
+	First of all I made instance variables and initialized in the 
+	constructor. Using a for loop and WeightedQuickUnionUF object
+	I connected the top row sites to the source. Using the same idea I 
+	did something similar to connect the bottom row sites to the source. 
+	
+	In the open method, the counter increments for each open tile spotted. 
+	The method then uses nested conditionals, to check if the surrounding 
+	tiles are open. In case they are open, using encode connect the tiles.
+
+	For methods : isOpen(), isFull(), numberOfOpenSites(), and 
+	percolates() the table represents what they output ->
+	Method = Output 
+	isOpen() = mark[i][j] 
+	isFull() = connects the source to the open site
+	numberOfOpenSites() = number of open sites 
+	percolates() = checks if the source is connected to the sink. 
+	
+	The encode method connects two tiles together using the formula, 
+	i * N + j + 1. 
+
+		Problem encountered #1 : Backwash. 
+		How to remove          : For backwash, I created another 
+				         WeightedQuickUnionUF object which
+				         works with the visualizer whereas
+				         the old one works with the 
+					 percolates boolean to see if the 
+					 system percolates.
+		Problem encountered #2 : Check style error (1) 
+		How to remove          : “error: Expression can be simplified.”
+ 				         in the following snippet - 
+						if (mark[i][j] == true) {
+            						return true; 
+        					}
+        					return false; 
+					This made no sense at all first, but 
+					after consulting google I found out that 
+					I can replace the above with this :
+						return mark[i][j]; 
+		Problem encountered #3 : Check Style error (2)
+		How to remove          : I was getting errors when I wrote 
+					 ‘==false’ so instead I used ‘!’
+					  
+				        
+   Problem 2 (Estimate Percolation Threshold):
+	In the percolation method, we use nested loops (for and while). 
+	The indpEXP variable is set equal to T which is the number of 
+	independent experiments performed. Initializing at zero, and less than 
+	the number of independent experiments, it constructs a new percolation 
+	object and a counter to track the number of open sites, and goes onto the 
+	while loop which iterates as long as the system has no open sites. Inside 
+	the loop it opens the site at coordinate (i, j) and  counter increments 
+	for each open site. To calculate ‘p’ i simply divided the number of open 
+	sites by N^2 (in this case, ‘grid’). 
+	
+	For the mean() and stddev() methods I simply called the StdStats to help 
+	calculate. 
+	
+	The confidenceLow() and confidenceHigh() methods make use of the formula provided. 
+	
+		Problem encountered #1 : Compiles and presents output, but fails Python 
+					 test.
+		How to remove          : The error was coming up due to the values coming 
+					 up greater than 0.59 (the values were in 0.79s) 
+					 This was because I hadn’t solved for the backwash 
+					 problem correctly. Once there was no backwash, 
+					 outputs seemed a bit more tamed. 
+		Problem encountered #2 : Incorrect confidenceLow() and confidenceHigh() 
+					 outputs.
+		How to remove          : Turned out that it was all in the parenthesis. 
+					 Since I was pretty exhausted while doing this, I 
+					 couldn’t really keep track of the parentheses, so 
+					 I decided to break the equation apart. 
+		
+
+3. Did you receive help from anyone? List their names, status (classmate, 
+   CS210 grad, TA, other), and the nature of help received.
+
+   Name               Status       Help Received
+   ----               ------       -------------
+   Kyler Mikulski      SI          Helped start the project
+   Ira Ceka 	     FSC mentor	   Exceptions
+   Sajana Wijesinghe classmate	   Idea for backwash problem 
+   Justin Kwan 	     classmate     Idea for encode 
+
+4. List any other comments here. Feel free to provide any feedback on how
+   much you learned from doing the assignment, and whether you enjoyed
+   doing it.
+
+   It is nice to have a head start as at times it gets particularly difficult
+   to start the project (same for home works) The zip file was a life saver, as I am 
+   someone who has difficulty in starting a project. The two week time was generous, even 
+   though we had our class cancelled once and a couple SI’s canceled, it  
+   wasn’t too bad. 
+   
